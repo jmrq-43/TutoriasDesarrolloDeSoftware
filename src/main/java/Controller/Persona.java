@@ -1,12 +1,12 @@
 package Controller;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@Builder
+@NoArgsConstructor
 public class Persona {
     private int Id;
     private String Nombre;
