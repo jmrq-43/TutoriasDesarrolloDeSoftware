@@ -8,14 +8,10 @@ import java.util.List;
 
 public class PersonaDao {
 
-    private Connection connection;
-
-    public PersonaDao(ConnectionDB connectionDB) throws SQLException {
-        this.connection = ConnectionDB.getConnection();
-    }
+    private static Connection connection = new ConnectionDB().getConnection();
 
     //TODO: READ METHOD
-    public List<Persona> getPersonas() {
+    public static List<Persona> getPersonas() {
         List<Persona> personaList = new ArrayList<>();
         String sql = "SELECT Id, Nombre, Edad  FROM personas ";
 
