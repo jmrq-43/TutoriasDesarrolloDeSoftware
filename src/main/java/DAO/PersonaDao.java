@@ -11,7 +11,7 @@ public class PersonaDao {
     private static Connection connection = new ConnectionDB().getConnection();
 
     //TODO: READ METHOD
-    public static List<Person> getPersonas() {
+    public List<Person> getPersons() {
         List<Person> personList = new ArrayList<>();
         String sql = "SELECT Id, Nombre, Edad  FROM personas ";
 
@@ -33,7 +33,7 @@ public class PersonaDao {
     }
 
     //TODO: CREATE PERSONA METHOD
-    public void createPersona(Person person) throws SQLException {
+    public void createPersons(Person person) throws SQLException {
         String sql = "INSERT INTO personas (Nombre, Edad) VALUES (?,?) ";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -45,7 +45,7 @@ public class PersonaDao {
     }
 
     //TODO: UPDATE PERSONA METHOD
-    public void updatePersona(Person person) throws SQLException {
+    public void updatePersons(Person person) throws SQLException {
         String sql = "UPDATE personas SET Nombre = ?, Edad = ? WHERE ID = ? ";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -58,8 +58,8 @@ public class PersonaDao {
     }
 
     //TODO: DELETE PERSONA METHOD
-    public void deletePersona(Person person) throws SQLException {
-        String sql = "DELETE FROM personas WHRE id = ?";
+    public void deletePersons(Person person) throws SQLException {
+        String sql = "DELETE FROM personas WHERE  id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, person.getId());
