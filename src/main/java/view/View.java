@@ -12,17 +12,12 @@ public class View {
     private void printMenu() {
         System.out.println("""
                 Bienvenido \n
-                1. crear una nueva persona 
-                2. mostrar personas 
+                1. mostrar Personas 
+                2. agregar Persona
                 3. editar una persona  
                 4. eliminar una persona                 
                 5. salir.                 
                 """);
-    }
-
-    private void printPersons() {
-        PersonaDao.getPersonas().forEach(persona -> {
-        });
     }
 
     public void slection() {
