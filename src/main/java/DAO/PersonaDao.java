@@ -1,6 +1,6 @@
 package dao;
 
-import Domain.Persona;
+import Domain.Person;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,66 +11,66 @@ public class PersonaDao {
     private static Connection connection = new ConnectionDB().getConnection();
 
     //TODO: READ METHOD
-    public static List<Persona> getPersonas() {
-        List<Persona> personaList = new ArrayList<>();
+    public static List<Person> getPersonas() {
+        List<Person> personList = new ArrayList<>();
         String sql = "SELECT Id, Nombre, Edad  FROM personas ";
 
         try (PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-                Persona persona = new Persona();
-                persona.setId(resultSet.getInt("Id"));
-                persona.setNombre(resultSet.getString("Nombre"));
-                persona.setEdad(resultSet.getInt("Edad"));
-                personaList.add(persona);
+                Person person = new Person();
+                person.setId(resultSet.getInt("Id"));
+                person.setNombre(resultSet.getString("Nombre"));
+                person.setEdad(resultSet.getInt("Edad"));
+                personList.add(person);
             }
 
         } catch (SQLException e) {
             System.out.println("error from getPersonas method = " + e.getMessage());
         }
-        return personaList;
+        return personList;
     }
 
     //TODO: CREATE PERSONA METHOD
-    public void createPersona(Persona persona) throws SQLException {
+    public void createPersona(Person person) throws SQLException {
         String sql = "INSERT INTO personas (Nombre, Edad) VALUES (?,?) ";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, persona.getNombre());
-            statement.setInt(2, persona.getEdad());
+            statement.setString(1, person.getNombre());
+            statement.setInt(2, person.getEdad());
             statement.executeUpdate();
         }
     }
 
     //TODO: UPDATE PERSONA METHOD
-    public void updatePersona(Persona persona) throws SQLException {
+    public void updatePersona(Person person) throws SQLException {
         String sql = "UPDATE personas SET Nombre = ?, Edad = ? WHERE ID = ? ";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, persona.getNombre());
-            statement.setInt(2, persona.getEdad());
-            statement.setInt(3, persona.getId());
+            statement.setString(1, person.getNombre());
+            statement.setInt(2, person.getEdad());
+            statement.setInt(3, person.getId());
             statement.executeUpdate();
         }
     }
 
     //TODO: DELETE PERSONA METHOD
-    public void deletePersona(Persona persona) throws SQLException {
+    public void deletePersona(Person person) throws SQLException {
         String sql = "DELETE FROM personas WHRE id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, persona.getId());
+            statement.setInt(1, person.getId());
 
             int affectedRows = statement.executeUpdate();
 
             if (affectedRows > 0) {
-                System.out.println("la persona con el Id " + persona.getId() +
-                        ">>" + persona.getNombre() + " fue eliminada");
+                System.out.println("la persona con el Id " + person.getId() +
+                        ">>" + person.getNombre() + " fue eliminada");
             } else {
-                System.out.println("no se encontro ninguna persona con el id " + persona.getId());
+                System.out.println("no se encontro ninguna persona con el id " + person.getId());
             }
         }
     }

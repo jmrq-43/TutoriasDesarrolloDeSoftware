@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class Persona {
+public class Person {
     private int Id;
     private String Nombre;
     private int Edad;
